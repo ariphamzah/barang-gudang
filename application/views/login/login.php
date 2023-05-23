@@ -190,7 +190,7 @@ footer a, footer a:link {
           <strong>Warning!</strong><br> <?php echo $this->session->flashdata('msg');?>
      </div>
     <?php } ?>
-    <input type="text" name="username" placeholder="Arip" autofocus required=""/>
+    <input type="text" name="username" placeholder="Hamzah" autofocus required=""/>
 
     <i class="fa fa-user-circle-o"></i>
     <input type="password" name="password" placeholder="Password" required=""/>
