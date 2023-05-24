@@ -193,7 +193,7 @@ footer a, footer a:link {
     <input type="text" name="username" placeholder="Username" autofocus required=""/>
 
     <i class="fa fa-user-circle-o"></i>
-    <input type="password" name="password" placeholder="Passwordd" required=""/>
+    <input type="password" name="password" placeholder="Password" required=""/>
 
     <i class="fa fa-key"></i>
     <?php if(isset($token_generate)){ ?>
