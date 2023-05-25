@@ -145,7 +145,7 @@ class Admin extends CI_Controller{
   ####################################
   public function users()
   {
-    $data['list_users'] = $this->M_admin->kecuali('user',$this->session->userdata('name'));
+    $data['list_users'] = $this->M_admin->read('user',$this->session->userdata('name'));
     $data['token_generate'] = $this->token_generate();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
@@ -154,7 +154,6 @@ class Admin extends CI_Controller{
 
   public function form_user()
   {
-    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
     $data['token_generate'] = $this->token_generate();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);

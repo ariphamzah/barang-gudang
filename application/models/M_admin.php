@@ -91,7 +91,7 @@ class M_admin extends CI_Model
     return $query->num_rows();
   }
 
-  public function kecuali($tabel,$username)
+  public function read($tabel,$username)
   {
     $query = $this->db->select()
                       ->from($tabel)
