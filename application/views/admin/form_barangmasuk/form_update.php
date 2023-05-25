@@ -211,7 +211,7 @@
                   <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
                   <input type="text" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?=$d->tanggal?>">
                 </div>
-                <div class="form-group" style="margin-bottom:40px;">
+                <div class="form-group">
                   <label for="nama_barang" style="margin-left:220px;display:inline;">Lokasi</label>
                   <select class="form-control" name="lokasi" style="margin-left:75px;width:20%;display:inline;">
                     <option value="<?=$d->lokasi?>"><?=$d->lokasi?></option>
@@ -247,6 +247,10 @@
                     <option value="Gorontalo">Gorontalo</option>
                     <option value="Bangka">Bangka Belitung</option>
                   </select>
+                </div>
+                <div class="form-group" style="margin-bottom:40px;">
+                  <label for="id_transaksi" style="margin-left:220px;display:inline;">Merk Barang</label>
+                  <input type="text" name="merk_barang" required style="margin-left:37px;width:20%;display:inline;" class="form-control" id="merk_barang" value="<?=$d->merk?>">
                 </div>
                 <div class="form-group" style="display:inline-block;">
                   <label for="kode_barang" style="width:87%;margin-left: 12px;">Kode Barang / Barcode</label>

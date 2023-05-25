@@ -352,6 +352,7 @@ class Admin extends CI_Controller{
       $id_transaksi = $this->input->post('id_transaksi',TRUE);
       $tanggal      = $this->input->post('tanggal',TRUE);
       $lokasi       = $this->input->post('lokasi',TRUE);
+      $merk         = $this->input->post('merk_barang',TRUE);
       $kode_barang  = $this->input->post('kode_barang',TRUE);
       $nama_barang  = $this->input->post('nama_barang',TRUE);
       $satuan       = $this->input->post('satuan',TRUE);
@@ -362,6 +363,7 @@ class Admin extends CI_Controller{
             'id_transaksi' => $id_transaksi,
             'tanggal'      => $tanggal,
             'lokasi'       => $lokasi,
+            'merk'         => $merk,
             'kode_barang'  => $kode_barang,
             'nama_barang'  => $nama_barang,
             'satuan'       => $satuan,

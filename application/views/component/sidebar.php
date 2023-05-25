@@ -46,6 +46,17 @@
         <li><a href="<?= base_url('admin/tabel_barangkeluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
         <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
       </ul>
+      <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i> <span>Report</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url('admin/form_barangmasuk') ?>"><i class="fa fa-circle-o"></i> Report Barang</a></li>
+            </ul>
+      </li>
     </li>
     <li>
     <li class="header">LABELS</li>

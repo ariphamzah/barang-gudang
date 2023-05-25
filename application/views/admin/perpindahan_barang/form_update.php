@@ -229,12 +229,12 @@
               </div>
                 <div class="form-group" style="display:inline-block;">
                   <label for="satuan" style="width:73%;">Satuan</label>
-                  <select class="form-control" name="satuan" style="width:110%;margin-right: 18px;">
+                  <select class="form-control" name="satuan" style="width:110%;margin-right: 18px;" readonly="readonly">
                     <?php foreach($list_satuan as $s){?>
                       <?php if($d->satuan == $s->nama_satuan){?>
-                    <option value="<?=$d->satuan?>" selected=""><?=$d->satuan?></option>
+                    <option value="<?=$d->satuan?>" readonly="readonly" selected=""><?=$d->satuan?></option>
                     <?php }else{?>
-                    <option value="<?=$s->kode_satuan?>"><?=$s->nama_satuan?></option>
+                    <option value="<?=$s->kode_satuan?>" readonly="readonly"><?=$s->nama_satuan?></option>
                       <?php } ?>
                       <?php } ?>
                   </select>
