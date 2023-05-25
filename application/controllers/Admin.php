@@ -6,6 +6,7 @@ class Admin extends CI_Controller{
   public function __construct(){
 		parent::__construct();
     $this->load->model('M_admin');
+    $this->load->model('M_login');
     $this->load->library('upload');
 	}
 
@@ -86,7 +87,6 @@ class Admin extends CI_Controller{
     $config =  array(
                    'upload_path'     => "./assets/upload/user/img/",
                    'allowed_types'   => "gif|jpg|png|jpeg",
-                   'encrypt_name'    => False, //
                    'max_size'        => "50000",  // ukuran file gambar
                    'max_height'      => "9680",
                    'max_width'       => "9024"
@@ -113,11 +113,9 @@ class Admin extends CI_Controller{
 
         $this->load->library('image_lib', $config);
         $this->image_lib->initialize($config);
-				if (!$this->image_lib->resize())
-        {
-          $data['pesan_error'] = $this->image_lib->display_errors();
-          $this->load->view('admin/profile',$data);
-        }
+
+        if($this->session->userdata('photo') !== 'default.png')
+            unlink('./assets/upload/user/img/'.$this->session->userdata('photo'));
 
         $where = array(
                 'username_user' => $this->session->userdata('name')
@@ -174,8 +172,12 @@ class Admin extends CI_Controller{
   public function proses_delete_user()
   {
     $id = $this->uri->segment(3);
+    $username = $this->uri->segment(4);
+
     $where = array('id' => $id);
+    $where2 = array('username_user' => $username);
     $this->M_admin->delete('user',$where);
+    $this->M_admin->delete('tb_upload_gambar_user',$where2);
     $this->session->set_flashdata('msg_berhasil','User Behasil Di Delete');
     redirect(base_url('admin/users'));
 
@@ -198,17 +200,31 @@ class Admin extends CI_Controller{
         $password     = $this->input->post('password',TRUE);
         $role         = $this->input->post('role',TRUE);
 
-        $data = array(
-              'username'     => $username,
-              'email'        => $email,
-              'password'     => $this->hash_password($password),
-              'role'         => $role,
-        );
-        $this->M_admin->insert('user',$data);
-
-        $this->session->set_flashdata('msg_berhasil','User Berhasil Ditambahkan');
-        redirect(base_url('admin/form_user'));
-        }
+        if($this->M_login->cek_username('user',$username)){
+          $this->session->set_flashdata('msg','Username Telah Digunakan');
+          redirect(base_url('login/register'));
+  
+        }else{
+          $data = array(
+                'username' => $username,
+                'email' 	 => $email,
+                'password' => $this->hash_password($password),
+                'role'     => $role
+          );
+  
+          $dataUpload = array(
+                'id'     => '',
+                'username_user' => $username,
+                'nama_file' => 'nopic.png',
+                'ukuran_file' => '6.33'
+          );
+  
+          $this->M_login->insert('user',$data);
+          $this->M_login->insert('tb_upload_gambar_user',$dataUpload);
+  
+          $this->session->set_flashdata('msg_terdaftar','User Berhasil Ditambahkan');
+          redirect(base_url('admin/form_user'));
+        }}
       }else {
         $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
         $this->load->view('admin/form_users/form_insert',$data);
