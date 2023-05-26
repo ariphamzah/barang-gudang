@@ -56,7 +56,7 @@ class Login extends CI_Controller {
 						if($isi->role == 1){
 							redirect(base_url('admin'));
 						}else {
-							redirect(base_url('user'));
+							redirect(base_url('admin'));
 						}
 
 				}else {

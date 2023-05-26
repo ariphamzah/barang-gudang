@@ -114,8 +114,11 @@ class Admin extends CI_Controller{
         $this->load->library('image_lib', $config);
         $this->image_lib->initialize($config);
 
-        if($this->session->userdata('photo') !== 'default.png')
-            unlink('./assets/upload/user/img/'.$this->session->userdata('photo'));
+         $photo = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+
+        if($photo->nama_file !== 'nopic.png'){
+            unlink('./assets/upload/user/img/'.$photo->name_file);
+        }
 
         $where = array(
                 'username_user' => $this->session->userdata('name')
@@ -171,11 +174,11 @@ class Admin extends CI_Controller{
 
   public function proses_delete_user()
   {
-    $id = $this->uri->segment(3);
-    $username = $this->uri->segment(4);
+    $username = $this->uri->segment(3);
 
-    $where = array('id' => $id);
+    $where = array('username' => $username);
     $where2 = array('username_user' => $username);
+
     $this->M_admin->delete('user',$where);
     $this->M_admin->delete('tb_upload_gambar_user',$where2);
     $this->session->set_flashdata('msg_berhasil','User Behasil Di Delete');
