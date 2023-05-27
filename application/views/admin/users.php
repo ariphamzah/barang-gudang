@@ -208,8 +208,9 @@
                   <th>Username</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>Last Login</th>
+                  <th>Last Login</th> 
                   <th>Update</th>
+                  <th>Reset Password</th>
                   <th>Delete</th>
                 </tr>
                 </thead>
@@ -226,6 +227,7 @@
                     <?php }?>
                     <td><?=$dd->last_login?></td>
                     <td><a type="button" class="btn btn-info"  href="<?=base_url('admin/update_user/'.$dd->id)?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a type="button" class="btn btn-success"  href="<?=base_url('admin/proses_reset_user/'.$dd->username)?>" name="btn_delete" style="margin:auto;" onclick="return confirm('Are you sure?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                     <td><a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/proses_delete_user/'.$dd->username)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
               <?php endforeach;?>

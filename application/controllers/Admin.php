@@ -186,6 +186,24 @@ class Admin extends CI_Controller{
 
   }
 
+  public function proses_reset_user()
+  {
+    $reset = $this->uri->segment(3);
+
+    $data = array(
+      'password' => $this->hash_password($reset)
+    );
+
+    $where = array(
+      'username' =>$reset
+    );
+
+    $this->M_admin->update_password('user',$where,$data);
+
+    $this->session->set_flashdata('msg_berhasil','Password Telah Direset');
+    redirect(base_url('admin/users'));
+  }
+
   public function proses_tambah_user()
   {
     $this->form_validation->set_rules('username','Username','required');
@@ -513,6 +531,7 @@ class Admin extends CI_Controller{
       $tanggal_masuk  = $this->input->post('tanggal',TRUE);
       $tanggal_keluar = $this->input->post('tanggal_keluar',TRUE);
       $lokasi         = $this->input->post('lokasi',TRUE);
+      $merk           = $this->input->post('merk_barang',TRUE);
       $kode_barang    = $this->input->post('kode_barang',TRUE);
       $nama_barang    = $this->input->post('nama_barang',TRUE);
       $satuan         = $this->input->post('satuan',TRUE);
@@ -520,14 +539,15 @@ class Admin extends CI_Controller{
 
       $where = array( 'id_transaksi' => $id_transaksi);
       $data = array(
-              'id_transaksi' => $id_transaksi,
-              'tanggal_masuk' => $tanggal_masuk,
-              'tanggal_keluar' => $tanggal_keluar,
-              'lokasi' => $lokasi,
-              'kode_barang' => $kode_barang,
-              'nama_barang' => $nama_barang,
-              'satuan' => $satuan,
-              'jumlah' => $jumlah
+              'id_transaksi'    => $id_transaksi,
+              'tanggal_masuk'   => $tanggal_masuk,
+              'tanggal_keluar'  => $tanggal_keluar,
+              'lokasi'          => $lokasi,
+              'merk'            => $merk,
+              'kode_barang'     => $kode_barang,
+              'nama_barang'     => $nama_barang,
+              'satuan'          => $satuan,
+              'jumlah'          => $jumlah
       );
         $this->M_admin->insert('tb_barang_keluar',$data);
         $this->session->set_flashdata('msg_berhasil_keluar','Data Berhasil Keluar');
