@@ -3,13 +3,11 @@
   <header class="main-header">
     <?= $main_header ?>
   </header>
-  <!-- Left side column. contains the logo and sidebar -->
 
   <aside class="main-sidebar">
     <?= $sidebar ?>
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -133,6 +131,7 @@
                       <a type="button" class="btn btn-info" style="width:14%;margin-right:29%" href="<?= base_url('admin/tabel_barangmasuk') ?>" name="btn_listbarang"><i class="fa fa-table" aria-hidden="true"></i> Lihat List Barang</a>
                       <button type="submit" style="width:20%" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
                     </div>
+                  <!-- </div> -->
                 </form>
               </div>
             </div>

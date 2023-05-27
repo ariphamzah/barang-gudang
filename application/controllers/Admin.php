@@ -36,7 +36,14 @@ class Admin extends CI_Controller{
     $data['token_generate'] = $this->token_generate();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
+    $data['nav'] = 5;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/profile',$data);
+    $this->load->view('component/footer');
   }
 
   public function token_generate()
@@ -150,7 +157,14 @@ class Admin extends CI_Controller{
     $data['token_generate'] = $this->token_generate();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
+    $data['nav'] = 6;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/users',$data);
+    $this->load->view('component/footer');
   }
 
   public function form_user()
@@ -297,6 +311,7 @@ class Admin extends CI_Controller{
   {
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $data['nav'] = 0;
     
     // Load View
     $this->load->view('component/header');
@@ -312,7 +327,14 @@ class Admin extends CI_Controller{
               'list_data' => $this->M_admin->select('tb_barang_masuk'),
               'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'))
             );
+    $data['nav'] = 1;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/tabel/tabel_barangmasuk',$data);
+    $this->load->view('component/footer');
   }
 
   public function update_barang($id_transaksi)
@@ -425,14 +447,28 @@ class Admin extends CI_Controller{
   public function form_satuan()
   {
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $data['nav'] = 4;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/form_satuan/form_insert',$data);
+    $this->load->view('component/footer');
   }
 
   public function tabel_satuan()
   {
     $data['list_data'] = $this->M_admin->select('tb_satuan');
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $data['nav'] = 3;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/tabel/tabel_satuan',$data);
+    $this->load->view('component/footer');
   }
 
   public function update_satuan()
@@ -570,7 +606,14 @@ class Admin extends CI_Controller{
   {
     $data['list_data'] = $this->M_admin->select('tb_barang_keluar');
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $data['nav'] = 2;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
     $this->load->view('admin/tabel/tabel_barangkeluar',$data);
+    $this->load->view('component/footer');
   }
 
 
