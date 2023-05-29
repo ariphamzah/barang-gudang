@@ -58,7 +58,7 @@
                     <td><?=$no?></td>
                     <td><?=$dd->kode_satuan?></td>
                     <td><?=$dd->nama_satuan?></td>
-                    <td><a type="button" class="btn btn-info"  href="<?=base_url('admin/update_satuan/'.$dd->id_satuan)?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a type="button" class="btn btn-info"  href="<?=base_url('admin/edit_satuan/'.$dd->id_satuan)?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                     <td><a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/delete_satuan/'.$dd->id_satuan)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
               <?php $no++; ?>

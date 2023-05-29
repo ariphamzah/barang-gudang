@@ -30,8 +30,8 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="<?= ($nav == '0')?'active':'' ?>"><a href="<?= base_url('admin/form_barangmasuk') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang Masuk</a></li>
-        <li class="<?= ($nav == '4')?'active':'' ?>"><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Tambah Satuan Barang</a></li>
+        <li class="<?= ($nav == '0')?'active':'' ?>"><a href="<?= base_url('admin/form_barangmasuk') ?>"><i class="fa fa-circle-o"></i> Barang Masuk</a></li>
+        <li class="<?= ($nav == '4')?'active':'' ?>"><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Satuan Barang</a></li>
       </ul>
     </li>
     <li class="treeview <?= ($nav != '1')?($nav != '2')?($nav != '3')?'':'active':'active':'active' ?>" href="<?= site_url('Welcome') ?>">
