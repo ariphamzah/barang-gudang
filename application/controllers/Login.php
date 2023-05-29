@@ -46,6 +46,7 @@ class Login extends CI_Controller {
 									'email' => $isi->email,
 									'status' => 'login',
 									'role' => $isi->role,
+									'photo' => $isi->photo,
 									'last_login' => $isi->last_login
 					);
 

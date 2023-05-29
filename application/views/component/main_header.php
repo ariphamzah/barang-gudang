@@ -17,18 +17,13 @@
       <!-- User Account: style can be found in dropdown.less -->
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <?php foreach ($avatar as $a) { ?>
-            <img src="<?php echo base_url('assets/upload/user/img/' . $a->nama_file) ?>" class="user-image" alt="User Image">
-          <?php } ?>
+          <img src="<?php echo base_url('assets/upload/user/img/' . $this->session->userdata('photo')) ?>" class="user-image" alt="User Image">
           <span class="hidden-xs"><?= $this->session->userdata('name') ?></span>
         </a>
         <ul class="dropdown-menu">
           <!-- User image -->
           <li class="user-header">
-            <?php foreach ($avatar as $a) { ?>
-              <img src="<?php echo base_url('assets/upload/user/img/' . $a->nama_file) ?>" class="img-circle" alt="User Image">
-            <?php } ?>
-
+            <img src="<?php echo base_url('assets/upload/user/img/' . $this->session->userdata('photo')) ?>" class="img-circle" alt="User Image">
             <p>
               <?= $this->session->userdata('name') ?> - Web Developer
               <small>Last Login: <?= $this->session->userdata('last_login') ?></small>

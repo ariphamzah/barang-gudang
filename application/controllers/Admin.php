@@ -12,7 +12,6 @@ class Admin extends CI_Controller{
 
   public function index(){
     if($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 1){
-      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
       $data['stokBarangMasuk'] = $this->M_admin->sum('tb_barang_masuk','jumlah');
       $data['stokBarangKeluar'] = $this->M_admin->sum('tb_barang_keluar','jumlah');      
       $data['dataUser'] = $this->M_admin->numrows('user');
@@ -23,7 +22,7 @@ class Admin extends CI_Controller{
   }
 
   public function sigout(){
-    session_destroy();
+    $this->session->sess_destroy();
     redirect('login');
   }
 
@@ -34,7 +33,6 @@ class Admin extends CI_Controller{
   public function profile()
   {
     $data['token_generate'] = $this->token_generate();
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
     $data['nav'] = 5;
 
@@ -123,20 +121,18 @@ class Admin extends CI_Controller{
 
         $photo = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
 
-        if($photo->nama_file !== 'nopic.png'){
-            unlink('./assets/upload/user/img/'.$photo->name_file);
+        if($this->session->userdata('photo') !== 'nopic.png'){
+            unlink('./assets/upload/user/img/'.$this->session->userdata('photo'));
         }
 
         $where = array(
-                'username_user' => $this->session->userdata('name')
+                'username' => $this->session->userdata('name')
         );
 
-        $data = array(
-                'nama_file' => $nama_file,
-                'ukuran_file' => $ukuran_file
-        );
+        $data = 'photo';
 
-        $this->M_admin->update('tb_upload_gambar_user',$data,$where);
+        $this->session->set_userdata('photo', $this->upload->data('file_name'));
+        $this->M_admin->update('user',$data,$where);
         $this->session->set_flashdata('msg_berhasil_gambar','Gambar Berhasil Di Upload');
         redirect(base_url('admin/profile'));
       }
@@ -155,7 +151,6 @@ class Admin extends CI_Controller{
   {
     $data['list_users'] = $this->M_admin->read('user',$this->session->userdata('name'));
     $data['token_generate'] = $this->token_generate();
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
     $data['nav'] = 6;
 
@@ -170,7 +165,6 @@ class Admin extends CI_Controller{
   public function form_user()
   {
     $data['token_generate'] = $this->token_generate();
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
     $data['nav'] = 6;
 
@@ -188,7 +182,6 @@ class Admin extends CI_Controller{
     $where = array('id' => $id);
     $data['token_generate'] = $this->token_generate();
     $data['list_data'] = $this->M_admin->get_data('user',$where);
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
     $data['nav'] = 6;
 
@@ -206,7 +199,6 @@ class Admin extends CI_Controller{
     $where = array('id' => $id);
     $data['token_generate'] = $this->token_generate();
     $data['list_data'] = $this->M_admin->get_data('user',$where);
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->session->set_userdata($data);
     $this->load->view('admin/form/form_users',$data);
   }
@@ -286,7 +278,6 @@ class Admin extends CI_Controller{
           redirect(base_url('admin/users'));
         }}
       }else {
-        $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
         $this->load->view('admin/form/form_users',$data);
     }
   }
@@ -335,7 +326,6 @@ class Admin extends CI_Controller{
   public function form_barangmasuk()
   {
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['nav'] = 0;
     
     // Load View
@@ -350,7 +340,6 @@ class Admin extends CI_Controller{
   {
     $where = array('id_transaksi' => $id_transaksi);
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['masuk'] = $this->M_admin->get_data('tb_barang_masuk',$where);
     $data['nav'] = 0;
     
@@ -364,10 +353,7 @@ class Admin extends CI_Controller{
 
   public function tabel_barangmasuk()
   {
-    $data = array(
-              'list_data' => $this->M_admin->select('tb_barang_masuk'),
-              'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'))
-            );
+    $data['list_data'] = $this->M_admin->select('tb_barang_masuk');
     $data['nav'] = 1;
 
     // Load View
@@ -377,22 +363,6 @@ class Admin extends CI_Controller{
     $this->load->view('admin/tabel/tabel_barangmasuk',$data);
     $this->load->view('component/footer');
   }
-
-  // Tidak Digunakan
-  // public function update_barang($id_transaksi)
-  // {
-  //   $where = array('id_transaksi' => $id_transaksi);
-  //   $data['data_barang_update'] = $this->M_admin->get_data('tb_barang_masuk',$where);
-  //   $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-  //   $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
-
-  //   // Load View
-  //   $this->load->view('component/header');
-  //   $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
-  //   $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
-  //   $this->load->view('admin/form_barangmasuk/form_update',$data);
-  //   $this->load->view('component/footer');
-  // }
 
   public function delete_barang($id_transaksi)
   {
@@ -488,7 +458,6 @@ class Admin extends CI_Controller{
 
   public function form_satuan()
   {
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['nav'] = 4;
 
     // Load View
@@ -504,7 +473,6 @@ class Admin extends CI_Controller{
     $uri = $this->uri->segment(3);
     $where = array('id_satuan' => $uri);
     $data['data_satuan'] = $this->M_admin->get_data('tb_satuan',$where);
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['nav'] = 4;
 
     // Load View
@@ -518,7 +486,6 @@ class Admin extends CI_Controller{
   public function tabel_satuan()
   {
     $data['list_data'] = $this->M_admin->select('tb_satuan');
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['nav'] = 3;
 
     // Load View
@@ -528,16 +495,6 @@ class Admin extends CI_Controller{
     $this->load->view('admin/tabel/tabel_satuan',$data);
     $this->load->view('component/footer');
   }
-
-  // Tidak Digunakan
-  // public function update_satuan()
-  // {
-  //   $uri = $this->uri->segment(3);
-  //   $where = array('id_satuan' => $uri);
-  //   $data['data_satuan'] = $this->M_admin->get_data('tb_satuan',$where);
-  //   $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
-  //   $this->load->view('admin/form_satuan/form_update',$data);
-  // }
 
   public function delete_satuan()
   {
@@ -613,7 +570,6 @@ class Admin extends CI_Controller{
     $where = array( 'id_transaksi' => $uri);
     $data['list_data'] = $this->M_admin->get_data('tb_barang_masuk',$where);
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $this->load->view('admin/perpindahan_barang/form_update',$data);
   }
 
@@ -664,7 +620,6 @@ class Admin extends CI_Controller{
   public function tabel_barangkeluar()
   {
     $data['list_data'] = $this->M_admin->select('tb_barang_keluar');
-    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
     $data['nav'] = 2;
 
     // Load View

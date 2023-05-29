@@ -2,9 +2,7 @@
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
-      <?php foreach ($avatar as $a) { ?>
-        <img src="<?php echo base_url('assets/upload/user/img/' . $a->nama_file) ?>" class="img-circle" alt="User Image">
-      <?php } ?>
+      <img src="<?php echo base_url('assets/upload/user/img/' . $this->session->userdata('photo')) ?>" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
       <p><?= $this->session->userdata('name') ?></p>

@@ -27,9 +27,7 @@
         <div class="col-md-3">
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <?php foreach($avatar as $a){ ?>
-                <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()?>assets/upload/user/img/<?= $a->nama_file?>" alt="User profile picture">
-              <?php } ?>
+              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()?>assets/upload/user/img/<?=$this->session->userdata('photo')?>" alt="User profile picture">
               <h3 class="profile-username text-center"><?=$this->session->userdata('name')?></h3>
               <p class="text-muted text-center">Software Engineer</p><br>
               <?php if($this->session->flashdata('msg_berhasil_gambar')){ ?>
@@ -65,9 +63,9 @@
               <div class="tab-pane" id="picture">
                 <form class="form-horizontal" action="<?=base_url('admin/proses_gambar_upload')?>" method="post" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label for="username" class="col-sm-2 control-label">Open Picture</label>
+                    <label for="userpicture" class="col-sm-2 control-label">Open Picture</label>
                     <div class="col-sm-10">
-                      <input type="file" name="userpicture" class="form-control" id="username">
+                      <input type="file" name="userpicture" class="form-control" id="userpicture">
                     </div>
                   </div>
                   <?php if(isset($token_generate)){ ?>
