@@ -76,7 +76,7 @@
                   <div class="form-group" style="display:block;">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <label for="username" style="width:87%;margin-left: 0px;">Username</label>
-                    <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" class="form-control" id="username" value="<?= $username ?>" placeholder="Username">
+                  <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" class="form-control" id="username" value="<?= $username ?>" <?php if($username != ''){ ?> readonly="readonly" <?php } ?> placeholder="Username">
                   </div>
                   <div class="form-group" style="display:block;">
                     <label for="email" style="width:73%;">Email</label>

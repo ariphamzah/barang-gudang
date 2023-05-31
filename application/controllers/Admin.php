@@ -77,6 +77,15 @@ class Admin extends CI_Controller{
             'id' =>$this->session->userdata('id')
         );
 
+        $data_report = array(
+          'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+          'user_report'      => $this->session->userdata('name'),
+          'jenis_report'     => 'report_user',
+          'note'             => 'Change Profile'
+        );
+
+        $this->M_admin->insert('tb_report',$data_report);
+
         $this->M_admin->update_password('user',$where,$data);
 
         $this->session->set_flashdata('msg_berhasil','Password Telah Diganti');
@@ -119,8 +128,6 @@ class Admin extends CI_Controller{
         $this->load->library('image_lib', $config);
         $this->image_lib->initialize($config);
 
-        $photo = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
-
         if($this->session->userdata('photo') !== 'nopic.png'){
             unlink('./assets/upload/user/img/'.$this->session->userdata('photo'));
         }
@@ -129,10 +136,20 @@ class Admin extends CI_Controller{
                 'username' => $this->session->userdata('name')
         );
 
+        $data_report = array(
+          'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+          'user_report'      => $this->session->userdata('name'),
+          'jenis_report'     => 'report_user',
+          'note'             => 'Change Photo User'
+        );
+
         $data = 'photo';
 
         $this->session->set_userdata('photo', $this->upload->data('file_name'));
         $this->M_admin->update('user',$data,$where);
+
+        $this->M_admin->insert('tb_report',$data_report);
+
         $this->session->set_flashdata('msg_berhasil_gambar','Gambar Berhasil Di Upload');
         redirect(base_url('admin/profile'));
       }
@@ -208,10 +225,18 @@ class Admin extends CI_Controller{
     $username = $this->uri->segment(3);
 
     $where = array('username' => $username);
-    $where2 = array('username_user' => $username);
 
     $this->M_admin->delete('user',$where);
-    $this->M_admin->delete('tb_upload_gambar_user',$where2);
+    
+    $data_report = array(
+      'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+      'user_report'      => $this->session->userdata('name'),
+      'jenis_report'     => 'report_user',
+      'note'             => 'Delete User'
+    );
+    
+    $this->M_admin->insert('tb_report',$data_report);
+
     $this->session->set_flashdata('msg_berhasil','User Behasil Di Delete');
     redirect(base_url('admin/users'));
 
@@ -228,6 +253,15 @@ class Admin extends CI_Controller{
     $where = array(
       'username' =>$reset
     );
+
+    $data_report = array(
+      'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+      'user_report'      => $this->session->userdata('name'),
+      'jenis_report'     => 'report_user',
+      'note'             => 'Reset Password User'
+    );
+    
+    $this->M_admin->insert('tb_report',$data_report);
 
     $this->M_admin->update_password('user',$where,$data);
 
@@ -263,16 +297,17 @@ class Admin extends CI_Controller{
                 'password' => $this->hash_password($password),
                 'role'     => $role
           );
-  
-          $dataUpload = array(
-                'id'     => '',
-                'username_user' => $username,
-                'nama_file' => 'nopic.png',
-                'ukuran_file' => '6.33'
+
+          $data_report = array(
+            'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+            'user_report'      => $this->session->userdata('name'),
+            'jenis_report'     => 'report_user',
+            'note'             => 'Add User'
           );
+          
+          $this->M_admin->insert('tb_report',$data_report);
   
           $this->M_login->insert('user',$data);
-          $this->M_login->insert('tb_upload_gambar_user',$dataUpload);
   
           $this->session->set_flashdata('msg_terdaftar','User Berhasil Ditambahkan');
           redirect(base_url('admin/users'));
@@ -303,6 +338,16 @@ class Admin extends CI_Controller{
               'email'        => $email,
               'role'         => $role,
         );
+
+        $data_report = array(
+          'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+          'user_report'      => $this->session->userdata('name'),
+          'jenis_report'     => 'report_user',
+          'note'             => 'Update User'
+        );
+        
+        $this->M_admin->insert('tb_report',$data_report);
+
         $this->M_admin->update('user',$data,$where);
         $this->session->set_flashdata('msg_berhasil','Data User Berhasil Diupdate');
         redirect(base_url('admin/users'));
@@ -367,6 +412,15 @@ class Admin extends CI_Controller{
   public function delete_barang($id_transaksi)
   {
     $where = array('id_transaksi' => $id_transaksi);
+    $data_report = array(
+      'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+      'user_report'      => $this->session->userdata('name'),
+      'jenis_report'     => 'report_barang',
+      'note'             => 'Delete Barang'
+    );
+
+    $this->M_admin->insert('tb_report',$data_report);
+
     $this->M_admin->delete('tb_barang_masuk',$where);
     redirect(base_url('admin/tabel_barangmasuk'));
   }
@@ -401,7 +455,16 @@ class Admin extends CI_Controller{
             'satuan'       => $satuan,
             'jumlah'       => $jumlah
       );
+
+      $data_report = array(
+        'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+        'user_report'      => $this->session->userdata('name'),
+        'jenis_report'     => 'report_barang',
+        'note'             => 'Add Barang'
+      );
+
       $this->M_admin->insert('tb_barang_masuk',$data);
+      $this->M_admin->insert('tb_report',$data_report);
 
       $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil Ditambahkan');
       redirect(base_url('admin/tabel_barangmasuk'));
@@ -440,7 +503,17 @@ class Admin extends CI_Controller{
             'satuan'       => $satuan,
             'jumlah'       => $jumlah
       );
+
+      $data_report = array(
+        'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+        'user_report'      => $this->session->userdata('name'),
+        'jenis_report'     => 'report_barang',
+        'note'             => 'Update Barang'
+      );
+      
       $this->M_admin->update('tb_barang_masuk',$data,$where);
+      $this->M_admin->insert('tb_report',$data_report);
+
       $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil Diupdate');
       redirect(base_url('admin/tabel_barangmasuk'));
     }else{
@@ -566,6 +639,7 @@ class Admin extends CI_Controller{
 
   public function barang_keluar()
   {
+    
     $uri = $this->uri->segment(3);
     $where = array( 'id_transaksi' => $uri);
     $data['list_data'] = $this->M_admin->get_data('tb_barang_masuk',$where);
