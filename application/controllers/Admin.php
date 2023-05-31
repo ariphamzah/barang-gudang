@@ -644,7 +644,14 @@ class Admin extends CI_Controller{
     $where = array( 'id_transaksi' => $uri);
     $data['list_data'] = $this->M_admin->get_data('tb_barang_masuk',$where);
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-    $this->load->view('admin/perpindahan_barang/form_update',$data);
+    $data['nav'] = 2;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
+    $this->load->view('admin/form/form_pindahbarang',$data);
+    $this->load->view('component/footer');
   }
 
   public function proses_data_keluar()
@@ -678,7 +685,7 @@ class Admin extends CI_Controller{
         $this->session->set_flashdata('msg_berhasil_keluar','Data Berhasil Keluar');
         redirect(base_url('admin/tabel_barangmasuk'));
     }else {
-      $this->load->view('perpindahan_barang/form_update/'.$id_transaksi);
+      $this->load->view('form/form_pindahbarang/'.$id_transaksi);
     }
 
   }

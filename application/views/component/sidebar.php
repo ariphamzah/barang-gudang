@@ -46,7 +46,7 @@
       </ul>
       <li class="treeview">
         <a href="#">
-          <i class="fa fa-edit"></i><span>Report</span>
+          <i class="fa fa-edit"></i><span> Report</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
