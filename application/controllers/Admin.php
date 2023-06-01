@@ -143,7 +143,9 @@ class Admin extends CI_Controller{
           'note'             => 'Change Photo User'
         );
 
-        $data = 'photo';
+        $data = array(
+          'photo' => $nama_file
+        );
 
         $this->session->set_userdata('photo', $this->upload->data('file_name'));
         $this->M_admin->update('user',$data,$where);
