@@ -81,7 +81,7 @@ class Admin extends CI_Controller{
           'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
           'user_report'      => $this->session->userdata('name'),
           'jenis_report'     => 'report_user',
-          'note'             => 'Change Profile'
+          'note'             => 'Change Profile User '.$this->session->userdata('name')
         );
 
         $this->M_admin->insert('tb_report',$data_report);
@@ -140,7 +140,7 @@ class Admin extends CI_Controller{
           'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
           'user_report'      => $this->session->userdata('name'),
           'jenis_report'     => 'report_user',
-          'note'             => 'Change Photo User'
+          'note'             => 'Change Photo User '.$this->session->userdata('name')
         );
 
         $data = array(
@@ -234,7 +234,7 @@ class Admin extends CI_Controller{
       'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
       'user_report'      => $this->session->userdata('name'),
       'jenis_report'     => 'report_user',
-      'note'             => 'Delete User'
+      'note'             => 'Delete User '.$username
     );
     
     $this->M_admin->insert('tb_report',$data_report);
@@ -260,7 +260,7 @@ class Admin extends CI_Controller{
       'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
       'user_report'      => $this->session->userdata('name'),
       'jenis_report'     => 'report_user',
-      'note'             => 'Reset Password User'
+      'note'             => 'Reset Password User '.$reset
     );
     
     $this->M_admin->insert('tb_report',$data_report);
@@ -304,7 +304,7 @@ class Admin extends CI_Controller{
             'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
             'user_report'      => $this->session->userdata('name'),
             'jenis_report'     => 'report_user',
-            'note'             => 'Add User'
+            'note'             => 'Add User '.$username
           );
           
           $this->M_admin->insert('tb_report',$data_report);
@@ -345,7 +345,7 @@ class Admin extends CI_Controller{
           'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
           'user_report'      => $this->session->userdata('name'),
           'jenis_report'     => 'report_user',
-          'note'             => 'Update User'
+          'note'             => 'Update User '.$username
         );
         
         $this->M_admin->insert('tb_report',$data_report);
@@ -418,7 +418,7 @@ class Admin extends CI_Controller{
       'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
       'user_report'      => $this->session->userdata('name'),
       'jenis_report'     => 'report_barang',
-      'note'             => 'Delete Barang'
+      'note'             => 'Delete Barang '.$id_transaksi
     );
 
     $this->M_admin->insert('tb_report',$data_report);
@@ -462,7 +462,7 @@ class Admin extends CI_Controller{
         'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
         'user_report'      => $this->session->userdata('name'),
         'jenis_report'     => 'report_barang',
-        'note'             => 'Add Barang'
+        'note'             => 'Add Barang '.$id_transaksi. ' (' .$nama_barang. ')' 
       );
 
       $this->M_admin->insert('tb_barang_masuk',$data);
@@ -510,7 +510,7 @@ class Admin extends CI_Controller{
         'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
         'user_report'      => $this->session->userdata('name'),
         'jenis_report'     => 'report_barang',
-        'note'             => 'Update Barang'
+        'note'             => 'Update Barang '.$id_transaksi. ' (' .$nama_barang. ')'
       );
       
       $this->M_admin->update('tb_barang_masuk',$data,$where);
@@ -575,6 +575,16 @@ class Admin extends CI_Controller{
   {
     $uri = $this->uri->segment(3);
     $where = array('id_satuan' => $uri);
+
+    $data_report = array(
+      'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+      'user_report'      => $this->session->userdata('name'),
+      'jenis_report'     => 'report_satuan',
+      'note'             => 'Delete Satuan'
+    );
+    
+    $this->M_admin->insert('tb_report',$data_report);
+
     $this->M_admin->delete('tb_satuan',$where);
     redirect(base_url('admin/tabel_satuan'));
   }
@@ -593,6 +603,16 @@ class Admin extends CI_Controller{
             'kode_satuan' => $kode_satuan,
             'nama_satuan' => $nama_satuan
       );
+
+      $data_report = array(
+        'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+        'user_report'      => $this->session->userdata('name'),
+        'jenis_report'     => 'report_satuan',
+        'note'             => 'Add Satuan'
+      );
+      
+      $this->M_admin->insert('tb_report',$data_report);
+      
       $this->M_admin->insert('tb_satuan',$data);
 
       $this->session->set_flashdata('msg_berhasil','Data satuan Berhasil Ditambahkan');
@@ -621,6 +641,16 @@ class Admin extends CI_Controller{
             'kode_satuan' => $kode_satuan,
             'nama_satuan' => $nama_satuan
       );
+
+      $data_report = array(
+        'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+        'user_report'      => $this->session->userdata('name'),
+        'jenis_report'     => 'report_satuan',
+        'note'             => 'Update Satuan'
+      );
+      
+      $this->M_admin->insert('tb_report',$data_report);
+
       $this->M_admin->update('tb_satuan',$data,$where);
 
       $this->session->set_flashdata('msg_berhasil','Data satuan Berhasil Di Update');
@@ -683,6 +713,15 @@ class Admin extends CI_Controller{
               'satuan'          => $satuan,
               'jumlah'          => $jumlah
       );
+
+      $data_report = array(
+        'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
+        'user_report'      => $this->session->userdata('name'),
+        'jenis_report'     => 'report_barang',
+        'note'             => 'Sale Barang '.$id_transaksi. ' (' .$nama_barang. ')'
+      );
+      
+        $this->M_admin->insert('tb_report',$data_report);
         $this->M_admin->insert('tb_barang_keluar',$data);
         $this->session->set_flashdata('msg_berhasil_keluar','Data Berhasil Keluar');
         redirect(base_url('admin/tabel_barangmasuk'));
