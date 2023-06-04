@@ -367,6 +367,29 @@ class Admin extends CI_Controller{
 
 
   ####################################
+        // Report
+  ####################################
+
+  public function report()
+  {
+    $data['list_data'] = $this->M_admin->select('tb_report');
+    $data['nav'] = 7;
+
+    // Load View
+    $this->load->view('component/header');
+    $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
+    $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
+    $this->load->view('admin/tabel/report',$data);
+    $this->load->view('component/footer');
+  }
+
+  ####################################
+           // Report
+  ####################################
+
+
+
+  ####################################
         // DATA BARANG MASUK
   ####################################
 
