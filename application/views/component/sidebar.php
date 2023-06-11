@@ -44,7 +44,7 @@
         <li class="<?= ($nav == '2')?'active':'' ?>"><a href="<?= base_url('admin/tabel_barangkeluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
         <li class="<?= ($nav == '3')?'active':'' ?>"><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
       </ul>
-      <li class="treeview">
+      <li class="treeview <?= ($nav == '7')?'active':'' ?>">
         <a href="#">
           <i class="fa fa-edit"></i><span> Report</span>
           <span class="pull-right-container">
@@ -52,7 +52,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="<?php echo base_url('admin/report') ?>"><i class="fa fa-circle-o"></i> Report Barang</a></li>
+          <li class="<?= ($nav == '7')?'active':'' ?>"><a href="<?php echo base_url('admin/report') ?>"><i class="fa fa-circle-o"></i> Report Barang</a></li>
         </ul>
       </li>
     </li>
