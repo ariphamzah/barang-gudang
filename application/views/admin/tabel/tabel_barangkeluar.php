@@ -37,10 +37,10 @@
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil');?>
                </div>
-              <?php } ?>
+              <?php } $id_transaksi = ""; ?>
 
               <a href="<?=base_url('admin/tabel_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Keluar</a>
-              <a href="<?=base_url('report/barangKeluarManual')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="laporan_data"><i class="fa fa-file-text" aria-hidden="true"></i> Invoice Manual</a>
+              <a href="<?=base_url('report/invoice/'.$id_transaksi)?>" style="margin-bottom:10px;" type="button" class="btn btn-danger"><i class="fa fa-file-text" aria-hidden="true"></i> Invoice Manual</a>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -73,7 +73,7 @@
                     <td><?=$dd->nama_barang?></td>
                     <td><?=$dd->satuan?></td>
                     <td><?=$dd->jumlah?></td>
-                    <td><a type="button" class="btn btn-danger btn-report"  href="<?=base_url('report/barangKeluar/'.$dd->id_transaksi.'/'.$dd->tanggal_keluar)?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+                    <td><a type="button" class="btn btn-danger btn-report"  href="<?=base_url('report/report_barang/'.$dd->id_transaksi)?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
                 </tr>
               <?php $no++; ?>
               <?php endforeach;?>
