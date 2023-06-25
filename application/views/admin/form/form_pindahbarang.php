@@ -48,6 +48,10 @@
                       <input type="text" name="id_transaksi" style="margin-left:84px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?=$d->id_transaksi?>">
                     </div>
                     <div class="form-group">
+                      <label for="tanggal" style="margin-left:215px;display:inline;">Nama Customer</label>
+                      <input type="text" name="customer" style="margin-left:66px;width:20%;display:inline;" class="form-control">
+                    </div>
+                    <div class="form-group">
                       <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal Masuk</label>
                       <input type="text" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?=$d->tanggal?>">
                     </div>
@@ -57,7 +61,7 @@
                     </div>
                     <div class="form-group">
                       <label for="lokasi" style="margin-left:220px;display:inline;">Lokasi</label>
-                      <input type="text" name="lokasi" style="margin-left:117px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?=$d->lokasi?>">
+                      <input type="text" name="lokasi" style="margin-left:117px;width:20%;display:inline;" class="form-control" >
                     </div>
                     <div class="form-group" style="margin-bottom:40px;">
                       <label for="merk_barang" style="margin-left:220px;display:inline;">Merk Barang</label>

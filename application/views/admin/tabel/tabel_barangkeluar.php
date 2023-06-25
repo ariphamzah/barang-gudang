@@ -46,6 +46,7 @@
                 <tr>
                   <th>No</th>
                   <th>ID Transaksi</th>
+                  <th>Nama Curtomer</th>
                   <th>Tanggal Masuk</th>
                   <th>Tanggal Keluar</th>
                   <th>Lokasi</th>
@@ -65,6 +66,7 @@
                   <?php foreach($list_data as $dd): ?>
                     <td><?=$no?></td>
                     <td><?=$dd->id_transaksi?></td>
+                    <td><?=$dd->customer?></td>
                     <td><?=$dd->tanggal_masuk?></td>
                     <td><?=$dd->tanggal_keluar?></td>
                     <td><?=$dd->lokasi?></td>
@@ -73,7 +75,7 @@
                     <td><?=$dd->nama_barang?></td>
                     <td><?=$dd->satuan?></td>
                     <td><?=$dd->jumlah?></td>
-                    <td><a type="button" class="btn btn-danger btn-report"  href="<?=base_url('report/report_barang/'.$dd->id_transaksi)?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+                    <td><a type="button" class="btn btn-danger btn-report"  href="<?=base_url('report/invoice/'.$dd->id_transaksi)?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
                 </tr>
               <?php $no++; ?>
               <?php endforeach;?>
@@ -85,6 +87,7 @@
                 <tr>
                   <th>No</th>
                   <th>ID Transaksi</th>
+                  <th>Nama Customer</th>
                   <th>Tanggal Masuk</th>
                   <th>Tanggal Keluar</th>
                   <th>Lokasi</th>

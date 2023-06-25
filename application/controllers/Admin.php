@@ -715,6 +715,7 @@ class Admin extends CI_Controller{
     if($this->form_validation->run() === TRUE)
     {
       $id_transaksi   = $this->input->post('id_transaksi',TRUE);
+      $costumer       = $this->input->post('customer',TRUE);
       $tanggal_masuk  = $this->input->post('tanggal',TRUE);
       $tanggal_keluar = $this->input->post('tanggal_keluar',TRUE);
       $lokasi         = $this->input->post('lokasi',TRUE);
@@ -727,6 +728,7 @@ class Admin extends CI_Controller{
       $where = array( 'id_transaksi' => $id_transaksi);
       $data = array(
               'id_transaksi'    => $id_transaksi,
+              'customer'        => $costumer,
               'tanggal_masuk'   => $tanggal_masuk,
               'tanggal_keluar'  => $tanggal_keluar,
               'lokasi'          => $lokasi,

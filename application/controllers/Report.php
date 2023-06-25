@@ -10,15 +10,16 @@ class Report extends CI_Controller{
   public function invoice()
   {
     $id_transaksi = $this->uri->segment(3);
-    
+
     if($id_transaksi != ''){
       $where = array ('id_transaksi' => $id_transaksi);
+
       $data['report'] = $this->M_admin->get_data('tb_barang_keluar',$where);
 
       $this->load->view('admin/invoice',$data);
     }
-
-    $this->load->view('admin/invoice');
-    
+    else{
+      $this->load->view('admin/invoice');
+    }    
   }
 }
