@@ -20,6 +20,8 @@
       </a>
     </li>
 
+    <?php if($this->session->userdata('role') == 1){ ?>
+
     <li class="treeview <?= ($nav != '0')?($nav != '4')?'':'active':'active' ?>" href="<?= site_url('Welcome') ?>">
       <a href="#">
         <i class="fa fa-edit"></i> <span>Forms</span>
@@ -32,6 +34,8 @@
         <li class="<?= ($nav == '4')?'active':'' ?>"><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Satuan Barang</a></li>
       </ul>
     </li>
+
+    <?php } ?>
     <li class="treeview <?= ($nav != '1')?($nav != '2')?($nav != '3')?'':'active':'active':'active' ?>" href="<?= site_url('Welcome') ?>">
       <a href="#">
         <i class="fa fa-table"></i> <span>Tables</span>
@@ -42,7 +46,12 @@
       <ul class="treeview-menu">
         <li class="<?= ($nav == '1')?'active':'' ?>"><a href="<?= base_url('admin/tabel_barangmasuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
         <li class="<?= ($nav == '2')?'active':'' ?>"><a href="<?= base_url('admin/tabel_barangkeluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
+
+        <?php if($this->session->userdata('role') == 1){ ?>
+
         <li class="<?= ($nav == '3')?'active':'' ?>"><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
+
+        <?php } ?>
       </ul>
       <li class="treeview <?= ($nav == '7')?'active':'' ?>">
         <a href="#">
@@ -62,9 +71,14 @@
       <a href="<?php echo base_url('admin/profile') ?>">
         <i class="fa fa-cogs" aria-hidden="true"></i> <span>Profile</span></a>
     </li>
+
+    <?php if($this->session->userdata('role') == 1){ ?>
+
     <li class="<?= ($nav == '6')?'active':'' ?>">
       <a href="<?php echo base_url('admin/users') ?>">
         <i class="fa fa-fw fa-users" aria-hidden="true"></i> <span>Users</span></a>
     </li>
+
+    <?php } ?>
   </ul>
 </section>

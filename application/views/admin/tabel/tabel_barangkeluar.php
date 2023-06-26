@@ -39,7 +39,9 @@
                </div>
               <?php } $id_transaksi = ""; ?>
 
+              <?php if($this->session->userdata('role') == 1){ ?>
               <a href="<?=base_url('admin/tabel_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Keluar</a>
+              <?php } ?>
               <a href="<?=base_url('report/invoice/'.$id_transaksi)?>" style="margin-bottom:10px;" type="button" class="btn btn-danger"><i class="fa fa-file-text" aria-hidden="true"></i> Invoice Manual</a>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -55,7 +57,9 @@
                   <th>Nama Barang</th>
                   <th>Satuan</th>
                   <th>Jumlah</th>
+                  <?php if($this->session->userdata('role') == 1){ ?>
                   <th>Invoice</th>
+                  <?php } ?>
                   <!-- <th></th> -->
                 </tr>
                 </thead>
@@ -75,7 +79,9 @@
                     <td><?=$dd->nama_barang?></td>
                     <td><?=$dd->satuan?></td>
                     <td><?=$dd->jumlah?></td>
+                    <?php if($this->session->userdata('role') == 1){ ?>
                     <td><a type="button" class="btn btn-danger btn-report"  href="<?=base_url('report/invoice/'.$dd->id_transaksi)?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+                    <?php } ?>
                 </tr>
               <?php $no++; ?>
               <?php endforeach;?>
@@ -96,7 +102,10 @@
                   <th>Nama Barang</th>
                   <th>Satuan</th>
                   <th>Jumlah</th>
+
+                  <?php if($this->session->userdata('role') == 1){ ?>
                   <th>Invoice</th>
+                  <?php } ?>
                 </tr>
                 </tfoot>
               </table>
