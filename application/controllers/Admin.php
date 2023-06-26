@@ -372,8 +372,16 @@ class Admin extends CI_Controller{
 
   public function report()
   {
-    $data['list_data'] = $this->M_admin->select('tb_report');
     $data['nav'] = 7;
+
+    // If user click submit
+		if($this->input->post('submit')){
+      $data['barmas'] = $this->proses_report($month,$year);
+      $data['flag'] = 1;
+			redirect('Admin/report');
+		}else{
+      $data['flag'] = 0;
+    }
 
     // Load View
     $this->load->view('component/header');
@@ -382,6 +390,15 @@ class Admin extends CI_Controller{
     $this->load->view('admin/tabel/report',$data);
     $this->load->view('component/footer');
   }
+
+  public function proses_report()
+  {
+    $month = $this->input->post('month');
+    $year = $this->input->post('year');
+    return $this->M_admin->get_data_report('tb_barang_masuk',$month,$year);
+  }
+
+
 
   ####################################
            // Report
