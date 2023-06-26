@@ -168,6 +168,10 @@ class Admin extends CI_Controller{
   ####################################
   public function users()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $data['list_users'] = $this->M_admin->read('user',$this->session->userdata('name'));
     $data['token_generate'] = $this->token_generate();
     $this->session->set_userdata($data);
@@ -183,6 +187,10 @@ class Admin extends CI_Controller{
 
   public function form_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $data['token_generate'] = $this->token_generate();
     $this->session->set_userdata($data);
     $data['nav'] = 6;
@@ -197,6 +205,10 @@ class Admin extends CI_Controller{
 
   public function edit_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+    
     $id = $this->uri->segment(3);
     $where = array('id' => $id);
     $data['token_generate'] = $this->token_generate();
@@ -214,6 +226,10 @@ class Admin extends CI_Controller{
 
   public function update_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $id = $this->uri->segment(3);
     $where = array('id' => $id);
     $data['token_generate'] = $this->token_generate();
@@ -224,6 +240,10 @@ class Admin extends CI_Controller{
 
   public function proses_delete_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $username = $this->uri->segment(3);
 
     $where = array('username' => $username);
@@ -246,6 +266,10 @@ class Admin extends CI_Controller{
 
   public function proses_reset_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $reset = $this->uri->segment(3);
 
     $data = array(
@@ -273,6 +297,10 @@ class Admin extends CI_Controller{
 
   public function proses_tambah_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $this->form_validation->set_rules('username','Username','required');
     $this->form_validation->set_rules('email','Email','required|valid_email');
     $this->form_validation->set_rules('password','Password','required');
@@ -321,6 +349,10 @@ class Admin extends CI_Controller{
 
   public function proses_update_user()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+    
     $this->form_validation->set_rules('username','Username','required');
     $this->form_validation->set_rules('email','Email','required|valid_email');
 
@@ -412,6 +444,9 @@ class Admin extends CI_Controller{
 
   public function form_barangmasuk()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
     $data['nav'] = 0;
     
@@ -425,6 +460,10 @@ class Admin extends CI_Controller{
 
   public function edit_barangmasuk($id_transaksi)
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $where = array('id_transaksi' => $id_transaksi);
     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
     $data['masuk'] = $this->M_admin->get_data('tb_barang_masuk',$where);
@@ -453,6 +492,10 @@ class Admin extends CI_Controller{
 
   public function delete_barang($id_transaksi)
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $where = array('id_transaksi' => $id_transaksi);
     $data_report = array(
       'id_report'        => 'RP-'.date("Y").random_string('numeric', 8),
@@ -573,6 +616,10 @@ class Admin extends CI_Controller{
 
   public function form_satuan()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $data['nav'] = 4;
 
     // Load View
@@ -585,6 +632,10 @@ class Admin extends CI_Controller{
 
   public function edit_satuan()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $uri = $this->uri->segment(3);
     $where = array('id_satuan' => $uri);
     $data['data_satuan'] = $this->M_admin->get_data('tb_satuan',$where);
@@ -600,6 +651,10 @@ class Admin extends CI_Controller{
 
   public function tabel_satuan()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $data['list_data'] = $this->M_admin->select('tb_satuan');
     $data['nav'] = 3;
 
@@ -613,6 +668,10 @@ class Admin extends CI_Controller{
 
   public function delete_satuan()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+
     $uri = $this->uri->segment(3);
     $where = array('id_satuan' => $uri);
 
@@ -631,6 +690,10 @@ class Admin extends CI_Controller{
 
   public function proses_satuan_insert()
   {
+    if($this->session->userdata('role') == 0){ 
+      redirect (base_url('admin/tabel_barangmasuk'));
+    }
+    
     $this->form_validation->set_rules('kode_satuan','Kode Satuan','trim|required|max_length[100]');
     $this->form_validation->set_rules('nama_satuan','Nama Satuan','trim|required|max_length[100]');
 

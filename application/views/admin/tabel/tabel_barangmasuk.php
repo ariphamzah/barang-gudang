@@ -45,8 +45,13 @@
                     <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil_keluar');?>
                </div>
               <?php } ?>
-              
+
+              <?php if($this->session->userdata('role') == 1){ ?>
               <a href="<?=base_url('admin/form_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
+              <?php } else { ?>
+                <a href=""></a>
+              <?php } ?>
+
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
