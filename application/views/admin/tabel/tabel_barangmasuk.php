@@ -30,7 +30,6 @@
               <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Stok Barang Masuk</h3>
             </div>
             
-            
             <div class="box-body">
 
               <?php if($this->session->flashdata('msg_berhasil')){ ?>
@@ -46,6 +45,7 @@
                     <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil_keluar');?>
                </div>
               <?php } ?>
+              
               <a href="<?=base_url('admin/form_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
