@@ -195,6 +195,7 @@
             <li><a href="<?php echo base_url() ?>assets/web_admin/pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li> -->
+        <?php if($this->session->userdata('role') == 1){ ?>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Forms</span>
@@ -207,6 +208,7 @@
               <li><a href="<?php echo base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Satuan Barang</a></li>
             </ul>
           </li>
+          <?php } ?>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-table"></i> <span>Tables</span>
@@ -217,7 +219,11 @@
             <ul class="treeview-menu">
               <li><a href="<?= base_url('admin/tabel_barangmasuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
               <li><a href="<?= base_url('admin/tabel_barangkeluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
+              
+              <?php if($this->session->userdata('role') == 1){ ?>
               <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
+              <?php } ?>
+              
             </ul>
             <li class="treeview">
             <a href="#">
@@ -236,10 +242,13 @@
             <a href="<?php echo base_url('admin/profile') ?>">
               <i class="fa fa-cogs" aria-hidden="true"></i> <span>Profile</span></a>
           </li>
+          <?php if($this->session->userdata('role') == 1){ ?>
           <li>
             <a href="<?php echo base_url('admin/users') ?>">
               <i class="fa fa-fw fa-users" aria-hidden="true"></i> <span>Users</span></a>
           </li>
+
+          <?php } ?>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -302,6 +311,8 @@
               <a href="<?= base_url('admin/tabel_barangkeluar') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
+
+          <?php if($this->session->userdata('role') == 1){ ?>
           <!-- ./col -->
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -318,6 +329,7 @@
               <a href="<?= base_url('admin/users') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <?php } ?>
           <!-- ./col -->
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->

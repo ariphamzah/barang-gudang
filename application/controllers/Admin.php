@@ -11,7 +11,7 @@ class Admin extends CI_Controller{
 	}
 
   public function index(){
-    if($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 1){
+    if($this->session->userdata('status') == 'login'){
       $data['stokBarangMasuk'] = $this->M_admin->sum('tb_barang_masuk','jumlah');
       $data['stokBarangKeluar'] = $this->M_admin->sum('tb_barang_keluar','jumlah');      
       $data['dataUser'] = $this->M_admin->numrows('user');
