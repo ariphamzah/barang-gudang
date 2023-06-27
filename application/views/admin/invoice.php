@@ -43,7 +43,7 @@
                     $tanggal_keluar   =$r->tanggal_keluar;
                     $kode_barang      =$r->kode_barang;
                     $nama_barang      =$r->nama_barang;
-                    $satuan           =$r->satuan;
+                    $satuan           =$r->id_satuan;
                     $jumlah           =$r->jumlah;
                 }
             }

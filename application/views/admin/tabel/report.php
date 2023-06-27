@@ -124,7 +124,7 @@
                           <td><?=$dd->merk?></td>
                           <td><?=$dd->kode_barang?></td>
                           <td><?=$dd->nama_barang?></td>
-                          <td><?=$dd->satuan?></td>
+                          <td><?=$dd->nama_satuan?></td>
                           <td><?=$dd->jumlah?></td>
                       </tr>
                     <?php $no++; ?>
@@ -222,7 +222,7 @@
                           <td><?=$dd->merk?></td>
                           <td><?=$dd->kode_barang?></td>
                           <td><?=$dd->nama_barang?></td>
-                          <td><?=$dd->satuan?></td>
+                          <td><?=$dd->nama_satuan?></td>
                           <td><?=$dd->jumlah?></td>
                       </tr>
                     <?php $no++; ?>

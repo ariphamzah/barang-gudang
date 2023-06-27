@@ -42,8 +42,9 @@ class M_admin extends CI_Model
 
   public function get_data_report($tabel,$month,$year,$tang)
   {
-    $query = $this->db->select()
+    $query = $this->db->select('*')
                       ->from($tabel)
+                      ->join('tb_satuan', $tabel.'.id_satuan = tb_satuan.id_satuan')
                       ->where("MONTH(".$tang.")='".$month."' AND YEAR(".$tang.")='".$year."'")
                       ->get();
     return $query->result();
@@ -109,6 +110,15 @@ class M_admin extends CI_Model
     return $query->result();
   }
   
+  public function read_join($table)
+	{
+    $query = $this->db->select('*')
+                      ->from($table)
+                      ->join('tb_satuan', $table.'.id_satuan = tb_satuan.id_satuan')
+                      ->get();
+
+    return $query->result();
+	}
 
 
 }

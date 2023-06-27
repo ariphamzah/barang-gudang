@@ -481,7 +481,7 @@ class Admin extends CI_Controller{
 
   public function tabel_barangmasuk()
   {
-    $data['list_data'] = $this->M_admin->select('tb_barang_masuk');
+    $data['list_data'] = $this->M_admin->read_join('tb_barang_masuk');
     $data['nav'] = 1;
 
     // Load View
@@ -539,7 +539,7 @@ class Admin extends CI_Controller{
             'merk'         => $merk,
             'kode_barang'  => $kode_barang,
             'nama_barang'  => $nama_barang,
-            'satuan'       => $satuan,
+            'id_satuan'       => $satuan,
             'jumlah'       => $jumlah
       );
 
@@ -587,7 +587,7 @@ class Admin extends CI_Controller{
             'merk'         => $merk,
             'kode_barang'  => $kode_barang,
             'nama_barang'  => $nama_barang,
-            'satuan'       => $satuan,
+            'id_satuan'    => $satuan,
             'jumlah'       => $jumlah
       );
 
@@ -817,7 +817,7 @@ class Admin extends CI_Controller{
               'merk'            => $merk,
               'kode_barang'     => $kode_barang,
               'nama_barang'     => $nama_barang,
-              'satuan'          => $satuan,
+              'id_satuan'          => $satuan,
               'jumlah'          => $jumlah
       );
 
@@ -848,7 +848,7 @@ class Admin extends CI_Controller{
 
   public function tabel_barangkeluar()
   {
-    $data['list_data'] = $this->M_admin->select('tb_barang_keluar');
+    $data['list_data'] = $this->M_admin->read_join('tb_barang_keluar');
     $data['nav'] = 2;
 
     // Load View

@@ -18,7 +18,7 @@
       $merk=$d->merk;
       $kode_barang=$d->kode_barang;
       $nama_barang=$d->nama_barang;
-      $satuan=$d->satuan;
+      $satuan=$d->id_satuan;
       $jumlah=$d->jumlah;
       $flag=1;
       $link=base_url('admin/proses_databarang_masuk_update');
