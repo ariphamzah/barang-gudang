@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group">
                       <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
-                      <input type="text" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control form_datetime" autocomplete="off" value="<?= $tanggal ?>">
+                      <input type="date" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control" autocomplete="off" value="<?= $tanggal ?>">
                     </div>
                     <div class="form-group">
                       <label for="nama_barang" style="margin-left:220px;display:inline;">Lokasi</label>

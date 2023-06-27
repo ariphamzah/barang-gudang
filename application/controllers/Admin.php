@@ -402,16 +402,27 @@ class Admin extends CI_Controller{
         // Report
   ####################################
 
-  public function report()
+  public function report($id)
   {
     $data['nav'] = 7;
+    $month = $this->input->post('month');
+    $year = $this->input->post('year');
+    
+    $data['month'] = $month;
+    $data['year'] = $year;
 
     // If user click submit
-		if($this->input->post('submit')){
-      $data['barmas'] = $this->proses_report($month,$year);
+		if($id == 1){
+
+      $data['barkel'] = $this->M_admin->get_data_report('tb_barang_keluar',$month,$year,'tanggal_keluar');
+      $data['flag'] = 2;
+
+		}else if($id == 2){
+
+      $data['barmas'] = $this->M_admin->get_data_report('tb_barang_masuk',$month,$year,'tanggal');
       $data['flag'] = 1;
-			redirect('Admin/report');
-		}else{
+
+    }else{
       $data['flag'] = 0;
     }
 
@@ -422,15 +433,6 @@ class Admin extends CI_Controller{
     $this->load->view('admin/tabel/report',$data);
     $this->load->view('component/footer');
   }
-
-  public function proses_report()
-  {
-    $month = $this->input->post('month');
-    $year = $this->input->post('year');
-    return $this->M_admin->get_data_report('tb_barang_masuk',$month,$year);
-  }
-
-
 
   ####################################
            // Report

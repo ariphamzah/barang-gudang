@@ -40,12 +40,11 @@ class M_admin extends CI_Model
     return $query->result();
   }
 
-  public function get_data_report($tabel,$month,$year)
+  public function get_data_report($tabel,$month,$year,$tang)
   {
     $query = $this->db->select()
                       ->from($tabel)
-                      ->where('MONTH(tanggal)',$month)
-                      ->where('YEAR(tanggal)',$year)
+                      ->where("MONTH(".$tang.")='".$month."' AND YEAR(".$tang.")='".$year."'")
                       ->get();
     return $query->result();
   }

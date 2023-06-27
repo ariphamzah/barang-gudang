@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                       <label for="tanggal_keluar" style="margin-left:220px;display:inline;">Tanggal Keluar</label>
-                      <input type="text" name="tanggal_keluar" style="margin-left:66px;width:20%;display:inline;" class="form-control form_datetime" required="" placeholder="Klik Disini">
+                      <input type="date" name="tanggal_keluar" style="margin-left:66px;width:20%;display:inline;" class="form-control" required="" placeholder="Klik Disini">
                     </div>
                     <div class="form-group">
                       <label for="lokasi" style="margin-left:220px;display:inline;">Lokasi</label>

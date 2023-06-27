@@ -61,7 +61,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="<?= ($nav == '7')?'active':'' ?>"><a href="<?php echo base_url('admin/report') ?>"><i class="fa fa-circle-o"></i> Report Barang</a></li>
+          <li class="<?= ($nav == '7')?'active':'' ?>"><a href="<?php echo base_url('admin/report/0') ?>"><i class="fa fa-circle-o"></i> Report Barang</a></li>
         </ul>
       </li>
     </li>
