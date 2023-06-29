@@ -415,14 +415,20 @@ class Admin extends CI_Controller{
 		if($id == 1){
 
       $data['barkel'] = $this->M_admin->get_data_report('tb_barang_keluar',$month,$year,'tanggal_keluar');
+      $view = #barkel;
+
       $data['flag'] = 2;
 
 		}else if($id == 2){
 
       $data['barmas'] = $this->M_admin->get_data_report('tb_barang_masuk',$month,$year,'tanggal');
+      $view = #barmas;
+
       $data['flag'] = 1;
 
     }else{
+      $view = #barmas;
+
       $data['flag'] = 0;
     }
 
@@ -430,7 +436,7 @@ class Admin extends CI_Controller{
     $this->load->view('component/header');
     $data['main_header'] = $this->load->view('component/main_header', $data, TRUE);
     $data['sidebar'] = $this->load->view('component/sidebar', NULL, TRUE);
-    $this->load->view('admin/tabel/report',$data);
+    $this->load->view('admin/tabel/report',$data,'/',$data['flag'].$view);
     $this->load->view('component/footer');
   }
 

@@ -53,7 +53,9 @@
                 <li><a href="#barkel" data-toggle="tab">Report Barang Keluar</a></li>
               </ul>
               <div class="tab-content">
+
                 <!-- Report Barang Keluar -->
+                
                 <div class="tab-pane" id="barkel">
                   <form class="form-horizontal" action="<?= site_url('Admin/report/1') ?>" method="post">
                     <?php if($this->session->flashdata('msg_berhasil')){ ?>
